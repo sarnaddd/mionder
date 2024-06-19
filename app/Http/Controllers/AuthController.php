@@ -46,7 +46,11 @@ class AuthController extends Controller
     }
 
     public function actionRegister(Request $request) {
-        $user = User::create([
+        $request->validate([
+            'password' => 'required|min:6',
+        ]);
+
+        User::create([
             'name' => $request->name,
             'email' => $request->email,
             'username' => $request->username,

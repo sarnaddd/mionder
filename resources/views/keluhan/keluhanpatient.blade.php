@@ -22,9 +22,9 @@
                 <tbody>
                     @foreach ($keluhan as $data)
                     <tr>
-                        <td>{{ $data->Tanggal }}</td>
-                        <td>{{ $data->Keluhan }}</td>
-                        <td>{{ $data->Nama_Dokter }}</td>
+                        <td>{{ $data->tanggal }}</td>
+                        <td>{{ $data->keluhan }}</td>
+                        <td>{{ $data->dokter->name }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -43,45 +43,47 @@
           </button>
         </div>
         <form action="{{ route('keluhan.add' )}}" method="POST">
-            @csrf
-            @method('POST')
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="Tanggal" class="col-form-label">Tanggal:</label>
-                    <input type="date" class="form-control @error('Tanggal') is-invalid @enderror" id="Tanggal" name="Tanggal">
-                        @error('Tanggal')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+        @csrf
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="Tanggal" class="col-form-label">Tanggal:</label>
+                        <input type="date" class="form-control @error('Tanggal') is-invalid @enderror" id="Tanggal" name="Tanggal">
+                            @error('Tanggal')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                </div>
+                <div class="form-group">
+                    <label for="keluhan" class="col-form-label">Keluhan:</label>
+                        <textarea class="form-control @error('keluhan') is-invalid @enderror" id="keluhan" name="keluhan"></textarea>
+                            @error('keluhan')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                </div>
+                <div class="form-group">
+                    <label for="dokter_id" class="col-form-label">Nama Dokter:</label>
+                        {{-- <input type="text" class="form-control @error('Nama_Dokter') is-invalid @enderror" id="Nama_Dokter" name="Nama_Dokter"> --}}
+                        <select class="form-control" name="dokter_id" id="dokter_id">
+                            <option value="" selected disabled>Pilih Dokter</option>
+                            @foreach ($dokter as $item) 
+                                <option value="{{ $item->id }}">{{ $item->name }}</option> 
+                            @endforeach
+                        </select>
+                            @error('Nama_Dokter')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                </div>
             </div>
-            <div class="form-group">
-                <label for="keluhan" class="col-form-label">Keluhan:</label>
-                    <textarea class="form-control @error('keluhan') is-invalid @enderror" id="keluhan" name="keluhan"></textarea>
-                        @error('keluhan')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
-            <div class="form-group">
-                <label for="Nama_Dokter" class="col-form-label">Nama Dokter:</label>
-                    <input type="text" class="form-control @error('Nama_Dokter') is-invalid @enderror" id="Nama_Dokter" name="Nama_Dokter">
-                        @error('Nama_Dokter')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-            </div>
-            
-
-            
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
-        </div>
-    </form>
+        </form>
       </div>
     </div>
   </div>

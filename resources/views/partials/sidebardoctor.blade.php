@@ -21,8 +21,8 @@
     <hr class="sidebar-divider">
     <li class="nav-item {{ (request()->is('trackerdoctor')) ? 'active' : '' }}">
         <a class="nav-link" href="/trackerdoctor">
-            <i class="fa-solid fa-clipboard-list"></i>
-            <span>Tracker</span>
+            <i class="fa-solid fa-notes-medical"></i>
+            <span>Patient</span>
         </a>
     </li>
     <hr class="sidebar-divider">

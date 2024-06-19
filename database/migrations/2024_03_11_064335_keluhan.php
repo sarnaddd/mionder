@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('keluhan', function (Blueprint $table) {
             $table->id();
-            $table->string('Nama_Pasien');
-            $table->string('Keluhan');
-            $table->string('Nama_Dokter');
-            $table->date('Tanggal');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('dokter_id')->constrained('users')->onDelete('cascade');
+            $table->string('keluhan');
+            $table->string('response')->nullable();
+            $table->date('tanggal');
             $table->timestamps();
         });
     }

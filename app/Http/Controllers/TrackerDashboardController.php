@@ -11,12 +11,12 @@ class TrackerDashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        return view('tracker.trackerdoctor', [
-            'trackers' => Tracker::all()
-        ])->with('success', session('success'));
-    }
+    // public function index()
+    // {
+    //     return view('tracker.trackerdoctor', [
+    //         'trackers' => Tracker::all()
+    //     ])->with('success', session('success'));
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -29,23 +29,23 @@ class TrackerDashboardController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $user = Auth::user();
+    // public function store(Request $request)
+    // {
+    //     $user = Auth::user();
 
-        $request->validate([
-            'Tanggal' => 'required|date',
-            'result' => 'required|string',
-        ]);
+    //     $request->validate([
+    //         'Tanggal' => 'required|date',
+    //         'result' => 'required|string',
+    //     ]);
 
-        Tracker::create([
-            'Tanggal' => $request->Tanggal,
-            'Result' => $request->result,
-            'Nama_Dokter' => $user->name,
-        ]);
+    //     Tracker::create([
+    //         'Tanggal' => $request->Tanggal,
+    //         'Result' => $request->result,
+    //         'Nama_Dokter' => $user->name,
+    //     ]);
 
-        return redirect()->route('trackerdoctor.index')->with('success', 'Data tracker berhasil disimpan.');
-    }
+    //     return redirect()->route('trackerdoctor.index')->with('success', 'Data tracker berhasil disimpan.');
+    // }
 
     /**
      * Display the specified resource.

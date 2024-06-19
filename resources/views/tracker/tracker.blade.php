@@ -8,6 +8,7 @@
                 <thead>
                     <tr>
                         <th>Date</th>
+                        <th>Symptom</th>
                         <th>Doctor</th>
                         <th>Result</th>
                     </tr>
@@ -15,11 +16,17 @@
                 <tfoot>
                 </tfoot>
                 <tbody>
-                    @foreach ($trackers as $tracker)
+                    @foreach ($keluhan as $tracker)
                     <tr>
-                        <td>{{ $tracker->Tanggal }}</td>
-                        <td>{{ $tracker->nama_dokter }}</td>
-                        <td>{{ $tracker->result }}</td>
+                        <td>{{ $tracker->tanggal }}</td>
+                        <td>{{ $tracker->keluhan }}</td>
+                        <td>{{ $tracker->dokter->name }}</td>
+                        <td>
+                            @if (!$tracker->response)
+                                <b>Dokter belum merespon</b>
+                            @endif
+                            {{ $tracker->response }}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

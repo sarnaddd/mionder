@@ -10,5 +10,15 @@ class Keluhan extends Model
     use HasFactory;
     protected $table = 'keluhan';
     protected $primaryKey = 'id';
-    protected $fillable = ['Keluhan', 'Tanggal', 'Nama_Dokter', 'Nama_Pasien'];
+    protected $fillable = ['keluhan', 'tanggal', 'dokter_id', 'user_id', 'response'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function dokter()
+    {
+        return $this->belongsTo(User::class, 'dokter_id');
+    }
 }

@@ -48,8 +48,18 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the trackers for the user.
      */
-    public function trackers(): HasMany
+    public function trackers()
     {
-        return $this->hasMany(Tracker::class);
+        // return $this->hasMany(Tracker::class, 'dokter_id');
+    }
+
+    public function keluhan()
+    {
+        return $this->hasMany(Keluhan::class, 'user_id');
+    }
+
+    public function dokter()
+    {
+        return $this->hasMany(Keluhan::class, 'dokter_id');
     }
 }
